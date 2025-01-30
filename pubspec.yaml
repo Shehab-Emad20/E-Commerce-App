@@ -32,6 +32,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_launcher_icons: ^0.14.3
+  flutter_localization: ^0.3.1
   flutter_svg: ^2.0.17
 
 dev_dependencies:
@@ -81,17 +82,16 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
-
 flutter_launcher_icons:
   android: "launcher_icon"
   image_path: "assets/images/app_icon.png"
   ios: true
   min_sdk_android: 21 # android min sdk min:16, default 21
 
-
-
 flutter_assets:
   assets_path: assets/images/
   output_path: lib/core/utils
   filename: app_images.dart
-  field_prefix:
+  field_prefix: null
+flutter_intl:
+  enabled: true

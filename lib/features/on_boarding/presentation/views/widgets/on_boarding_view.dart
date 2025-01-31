@@ -43,10 +43,8 @@ class OnBoardingPageView extends StatelessWidget {
           image: Assets.imagesPageViewItem2Image,
           subtitle:
               'نقدم لك أفضل الفواكه المختارة بعناية. اطلع على التفاصيل والصور والتقييمات لتتأكد من اختيار الفاكهة المثالية',
-          title: const Text(
-            'ابحث وتسوق',
-            textAlign: TextAlign.center,
-          ),
+          title: const Text('ابحث وتسوق',
+              textAlign: TextAlign.center, style: TextStyles.bold23),
         ),
       ],
     );

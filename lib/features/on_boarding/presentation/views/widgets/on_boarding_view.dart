@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/core/utils/app_colors.dart';
 import 'package:flutter_application_1/core/utils/app_images.dart';
+import 'package:flutter_application_1/core/utils/app_text_styles.dart';
 import 'package:flutter_application_1/features/on_boarding/presentation/views/widgets/page_view_item.dart';
 
 class OnBoardingPageView extends StatelessWidget {
@@ -23,15 +25,13 @@ class OnBoardingPageView extends StatelessWidget {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                'مرحبًا بك في',
-              ),
-              Text(
-                '  HUB',
-              ),
-              Text(
-                'Fruit',
-              ),
+              Text('Fruit',
+                  style: TextStyles.bold23
+                      .copyWith(color: AppColors.primaryColor)),
+              Text('HUB',
+                  style: TextStyles.bold23
+                      .copyWith(color: AppColors.secondaryColor)),
+              Text(' مرحبًا بك في', style: TextStyles.bold23),
             ],
           ),
         ),

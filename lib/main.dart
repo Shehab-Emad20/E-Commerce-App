@@ -4,7 +4,8 @@ import 'package:flutter_application_1/core/services/shared_preferences_singleton
 import 'package:flutter_application_1/features/splash/presentation/views/splash_view.dart';
 
 void main() async {
-  await SharedPreferencesSingleton.init();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Prefs.init();
   runApp(FrutisHub());
 }
 

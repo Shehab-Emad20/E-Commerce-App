@@ -29,6 +29,16 @@ class OnBoardingPageView extends StatelessWidget {
             ],
           ),
         ),
+        PageViewItem(
+          backgroundImage: Assets.imagesPageViewItem2BackgroundImage,
+          image: Assets.imagesPageViewItem2Image,
+          subtitle:
+              'نقدم لك أفضل الفواكه المختارة بعناية. اطلع على التفاصيل والصور والتقييمات لتتأكد من اختيار الفاكهة المثالية',
+          title: const Text(
+            'ابحث وتسوق',
+            textAlign: TextAlign.center,
+          ),
+        ),
       ],
     );
   }

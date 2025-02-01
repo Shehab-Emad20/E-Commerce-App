@@ -39,22 +39,19 @@ class PageViewItem extends StatelessWidget {
             Visibility(
               visible: isvisible,
               child: GestureDetector(
-                onTap: () {
-                  Prefs.setBool(isonboardingviewseen, true);
+                  onTap: () {
+                    Prefs.setBool(isonboardingviewseen, true);
 
-                  Navigator.of(context)
-                      .pushReplacementNamed(LoginView.routeName);
-                },
-                child: Align(
-                    alignment: Alignment.topRight,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Text('تخط',
-                          style: TextStyles.regular13
-                              .copyWith(color: Color(0xFF949D9E))),
-                    )),
-              ),
-            )
+                    Navigator.of(context)
+                        .pushReplacementNamed(LoginView.routeName);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text('تخط',
+                        style: TextStyles.regular13
+                            .copyWith(color: Color(0xFF949D9E))),
+                  )),
+            ),
           ],
         ),
       ),

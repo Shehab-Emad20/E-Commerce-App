@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/helper_function/on_generate_routes.dart';
 import 'package:flutter_application_1/core/services/shared_preferences_singleton.dart';
+import 'package:flutter_application_1/core/utils/app_colors.dart';
 import 'package:flutter_application_1/features/splash/presentation/views/splash_view.dart';
 
 void main() async {
@@ -17,6 +18,8 @@ class FrutisHub extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         fontFamily: 'Cairo',
+        primaryColor: Colors.white,
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
       ),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: onGenerateRoutes,

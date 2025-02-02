@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/core/utils/widgets/custom_text_field.dart';
+import 'package:flutter_application_1/features/auth/presentation/view/widgets/terms_and_conditions.dart';
 
 class SingnupViewBody extends StatelessWidget {
   const SingnupViewBody({super.key});
@@ -24,6 +25,8 @@ class SingnupViewBody extends StatelessWidget {
             textInputType: TextInputType.visiblePassword,
             suffixIcon: Icon(Icons.remove_red_eye, color: Color(0xffC9CECF)),
           ),
+          SizedBox(height: 16),
+          TermsAndConditions()
         ]),
       ),
     );

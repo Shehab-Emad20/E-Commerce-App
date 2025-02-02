@@ -4,6 +4,8 @@ import 'package:flutter_application_1/core/utils/app_colors.dart';
 import 'package:flutter_application_1/core/utils/app_text_styles.dart';
 import 'package:flutter_application_1/core/utils/widgets/custom_button.dart';
 import 'package:flutter_application_1/core/utils/widgets/custom_text_field.dart';
+import 'package:flutter_application_1/features/auth/presentation/view/widgets/dont_have_account_widegt.dart';
+import 'package:flutter_application_1/features/auth/presentation/view/widgets/or_divider.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -40,16 +42,9 @@ class LoginViewBody extends StatelessWidget {
             SizedBox(height: 33),
             CustomButton(text: 'تسجيل الدخول', onPressed: () {}),
             SizedBox(height: 33),
-            Text.rich(TextSpan(children: [
-              TextSpan(
-                  text: 'ليس لديك حساب ؟',
-                  style:
-                      TextStyles.semiBold16.copyWith(color: Color(0xFF949D9E))),
-              TextSpan(
-                  text: ' إنشاء حساب',
-                  style: TextStyles.semiBold16
-                      .copyWith(color: AppColors.primaryColor)),
-            ]))
+            DontHaveAccountWidegt(),
+            SizedBox(height: 33),
+            OrDivider(),
           ],
         ),
       ),

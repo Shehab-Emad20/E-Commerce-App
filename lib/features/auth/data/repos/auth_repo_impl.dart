@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter_application_1/core/error/exception.dart';
 import 'package:flutter_application_1/core/error/failures.dart';
@@ -20,6 +22,9 @@ class AuthRepoImpl extends AuthRepo {
     } on CustomExcepton catch (e) {
       return left(ServerFailur(e.message));
     } catch (e) {
+      log(
+        'Exception in AuthRepoImpl. createUserWithEmailAndPassword: ${e.toString()}',
+      );
       return left(ServerFailur('لقد حدث خطأ ما.'));
     }
   }

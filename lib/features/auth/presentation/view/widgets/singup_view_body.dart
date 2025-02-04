@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
+import 'package:flutter_application_1/core/helper_function/build_error_bar.dart';
 import 'package:flutter_application_1/core/utils/widgets/custom_button.dart';
 import 'package:flutter_application_1/core/utils/widgets/custom_text_field.dart';
 import 'package:flutter_application_1/core/utils/widgets/password_field.dart';
@@ -20,6 +21,7 @@ class _SingnupViewBodyState extends State<SingnupViewBody> {
 
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   late String email, password, name;
+  late bool isTermsAccepted = false;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -50,15 +52,25 @@ class _SingnupViewBodyState extends State<SingnupViewBody> {
               },
             ),
             SizedBox(height: 16),
-            TermsAndConditions(),
+            TermsAndConditions(
+              onChanged: (value) {
+                isTermsAccepted = value;
+              },
+            ),
             SizedBox(height: 30),
             CustomButton(
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
-                    context
-                        .read<SignupCubit>()
-                        .createUserWithEmailAndPassword(name, email, password);
+                    if (isTermsAccepted) {
+                      context
+                          .read<SignupCubit>()
+                          .createUserWithEmailAndPassword(
+                              name, email, password);
+                    } else {
+                      buiddErrorBar(
+                          context, 'يجب الموافقة على الشروط والاحكام');
+                    }
                   } else {
                     setState(() {
                       autovalidateMode = AutovalidateMode.always;
@@ -74,5 +86,3 @@ class _SingnupViewBodyState extends State<SingnupViewBody> {
     );
   }
 }
-
-

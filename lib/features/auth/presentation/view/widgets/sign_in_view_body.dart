@@ -67,9 +67,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
-                      context
-                          .read<SigninCubit>()
-                          .signInWithEmailAndPassword(email, password);
+                      context.read<SigninCubit>().signin(email, password);
                     } else {
                       setState(() {
                         autovalidateMode = AutovalidateMode.always;
@@ -82,7 +80,9 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               OrDivider(),
               SizedBox(height: 16),
               SocialLoginButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.read<SigninCubit>().signInWithGoogle();
+                },
                 image: Assets.imagesGoogleIcon,
                 title: 'تسجيل الدخول باستخدام جوجل',
               ),

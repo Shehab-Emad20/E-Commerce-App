@@ -21,6 +21,7 @@ class CustomTextFormField extends StatelessWidget {
         obscureText: obscureText,
         onSaved: onSaved,
         validator: (value) {
+        
           if (value == null || value.isEmpty) {
             return 'هذا الحقل مطلوب';
           }

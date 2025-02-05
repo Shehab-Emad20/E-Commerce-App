@@ -20,11 +20,11 @@ class SignInViewBody extends StatefulWidget {
 }
 
 class _SignInViewBodyState extends State<SignInViewBody> {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
   late String email, password;
-
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -71,8 +71,9 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                           .read<SigninCubit>()
                           .signInWithEmailAndPassword(email, password);
                     } else {
-                      autovalidateMode = AutovalidateMode.always;
-                      setState(() {});
+                      setState(() {
+                        autovalidateMode = AutovalidateMode.always;
+                      });
                     }
                   }),
               SizedBox(height: 33),

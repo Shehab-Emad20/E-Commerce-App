@@ -8,5 +8,8 @@ final getIt = GetIt.instance;
 void setup() {
   getIt.registerSingleton<FireBaseAuthServices>(FireBaseAuthServices());
   getIt.registerSingleton<AuthRepo>(
-      AuthRepoImpl(fireBaseAuthServices: getIt<FireBaseAuthServices>()));
+    AuthRepoImpl(
+      fireBaseAuthServices: getIt<FireBaseAuthServices>(),
+    ),
+  );
 }

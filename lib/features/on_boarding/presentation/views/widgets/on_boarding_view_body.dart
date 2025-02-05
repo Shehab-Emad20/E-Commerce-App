@@ -4,7 +4,7 @@ import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/core/services/shared_preferences_singleton.dart';
 import 'package:flutter_application_1/core/utils/app_colors.dart';
 import 'package:flutter_application_1/core/utils/widgets/custom_button.dart';
-import 'package:flutter_application_1/features/auth/presentation/view/login_view.dart';
+import 'package:flutter_application_1/features/auth/presentation/view/sign_in.dart';
 import 'package:flutter_application_1/features/on_boarding/presentation/views/widgets/on_boarding_view.dart';
 
 class OnBoardingViewBody extends StatefulWidget {
@@ -62,7 +62,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
                 onPressed: () {
                   Prefs.setBool(isonboardingviewseen, true);
                   Navigator.of(context)
-                      .pushReplacementNamed(LoginView.routeName);
+                      .pushReplacementNamed(SigninView.routeName);
                 },
                 text: 'أبدأ الان'),
           ),

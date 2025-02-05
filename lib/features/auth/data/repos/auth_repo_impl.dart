@@ -31,9 +31,7 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future<Either<Failure, UserEntity>> signInWithEmailAndPassword(
-    String email,
-    String password,
-  ) async {
+      String email, String password) async {
     try {
       var user = await fireBaseAuthServices.signInWithEmailAndPassword(
           email: email, password: password);
@@ -43,6 +41,19 @@ class AuthRepoImpl extends AuthRepo {
     } catch (e) {
       log(
         'Exception in AuthRepoImpl. signInWithEmailAndPassword: ${e.toString()}',
+      );
+      return left(ServerFailur('لقد حدث خطأ ما.'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserEntity>> signInWithGoogle() async {
+    try {
+      var user = await fireBaseAuthServices.signInWithGoogle();
+      return right(UserModel.fromFirebaseUser(user));
+    } catch (e) {
+      log(
+        'Exception in AuthRepoImpl. signInWithGoogle: ${e.toString()}',
       );
       return left(ServerFailur('لقد حدث خطأ ما.'));
     }

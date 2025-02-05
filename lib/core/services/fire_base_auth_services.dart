@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_application_1/core/error/exception.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class FireBaseAuthServices {
   Future<User> createUserWithEmailAndPassword(
@@ -30,7 +31,8 @@ class FireBaseAuthServices {
     }
   }
 
-  Future<User> signInWithEmailAndPassword({required String email,required String password}) async {
+  Future<User> signInWithEmailAndPassword(
+      {required String email, required String password}) async {
     try {
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
@@ -54,5 +56,18 @@ class FireBaseAuthServices {
       log('Exception in FireBaseAuthServices.signInWithEmailAndPassword: ${e.toString()}');
       throw CustomExcepton(message: 'لقد حدث خطأ ما');
     }
+  }
+
+  Future<User> signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    return (await FirebaseAuth.instance.signInWithCredential(credential)).user!;
   }
 }

@@ -20,7 +20,7 @@ class _SingnupViewBodyState extends State<SingnupViewBody> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  late String email = '', name = '', password = '';
+  late String email, name, password;
   late bool isTermsAccepted = false;
   @override
   Widget build(BuildContext context) {

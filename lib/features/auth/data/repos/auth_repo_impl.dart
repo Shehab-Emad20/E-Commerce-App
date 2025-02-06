@@ -3,22 +3,28 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_application_1/core/error/exception.dart';
 import 'package:flutter_application_1/core/error/failures.dart';
+import 'package:flutter_application_1/core/services/data_services.dart';
 import 'package:flutter_application_1/core/services/fire_base_auth_services.dart';
+import 'package:flutter_application_1/core/utils/backend_endpoints.dart';
 import 'package:flutter_application_1/features/auth/data/models/user_model.dart';
 import 'package:flutter_application_1/features/auth/domain/entites/user_entity.dart';
 import 'package:flutter_application_1/features/auth/domain/repos/auth_repo.dart';
 
 class AuthRepoImpl extends AuthRepo {
   final FireBaseAuthServices fireBaseAuthServices;
+  final DatabaseService databaseService;
 
-  AuthRepoImpl({required this.fireBaseAuthServices});
+  AuthRepoImpl(
+      {required this.databaseService, required this.fireBaseAuthServices});
   @override
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword(
       String email, String password, String name) async {
     try {
       var user = await fireBaseAuthServices.createUserWithEmailAndPassword(
           email: email, password: password);
-      return right(UserModel.fromFirebaseUser(user));
+      var userEntity = UserModel.fromFirebaseUser(user);
+      await addUserDate(user: userEntity);
+      return right(userEntity);
     } on CustomExcepton catch (e) {
       return left(ServerFailur(e.message));
     } catch (e) {
@@ -72,5 +78,11 @@ class AuthRepoImpl extends AuthRepo {
       );
       return left(ServerFailur('لقد حدث خطأ ما.'));
     }
+  }
+
+  @override
+  Future addUserDate({required UserEntity user}) async {
+    await databaseService.addData(
+        path: BackendEndpoints.addUserData, data: user.toMap());
   }
 }

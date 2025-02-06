@@ -1,6 +1,6 @@
 import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_application_1/core/error/exception.dart';
 import 'package:flutter_application_1/core/error/failures.dart';
 import 'package:flutter_application_1/core/services/data_services.dart';
@@ -19,15 +19,22 @@ class AuthRepoImpl extends AuthRepo {
   @override
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword(
       String email, String password, String name) async {
+    User? user;
     try {
-      var user = await fireBaseAuthServices.createUserWithEmailAndPassword(
+      user = await fireBaseAuthServices.createUserWithEmailAndPassword(
           email: email, password: password);
       var userEntity = UserModel.fromFirebaseUser(user);
       await addUserDate(user: userEntity);
       return right(userEntity);
     } on CustomExcepton catch (e) {
+      if (user != null) {
+        await fireBaseAuthServices.deleteUser();
+      }
       return left(ServerFailur(e.message));
     } catch (e) {
+      if (user != null) {
+        await fireBaseAuthServices.deleteUser();
+      }
       log(
         'Exception in AuthRepoImpl. createUserWithEmailAndPassword: ${e.toString()}',
       );
@@ -43,7 +50,7 @@ class AuthRepoImpl extends AuthRepo {
         email: email,
         password: password,
       );
-      return right(UserModel.fromFirebaseUser(user!));
+      return right(UserModel.fromFirebaseUser(user));
     } on CustomExcepton catch (e) {
       return left(ServerFailur(e.message));
     } catch (e) {

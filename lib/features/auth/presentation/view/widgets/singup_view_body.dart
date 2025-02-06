@@ -20,7 +20,7 @@ class _SingnupViewBodyState extends State<SingnupViewBody> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  late String email, name, password;
+  late String name, email, password;
   late bool isTermsAccepted = false;
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,7 @@ class _SingnupViewBodyState extends State<SingnupViewBody> {
                       context
                           .read<SignupCubit>()
                           .createUserWithEmailAndPassword(
-                              email, name, password);
+                              name, email, password);
                     } else {
                       buiddErrorBar(
                           context, 'يجب الموافقة على الشروط والاحكام');

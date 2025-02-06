@@ -23,22 +23,24 @@ class AuthRepoImpl extends AuthRepo {
     try {
       user = await fireBaseAuthServices.createUserWithEmailAndPassword(
           email: email, password: password);
-      var userEntity = UserModel.fromFirebaseUser(user);
+      var userEntity = UserEntity(email: email, name: name, uId: user.uid);
       await addUserDate(user: userEntity);
       return right(userEntity);
     } on CustomExcepton catch (e) {
-      if (user != null) {
-        await fireBaseAuthServices.deleteUser();
-      }
+      await deleteUser(user);
       return left(ServerFailur(e.message));
     } catch (e) {
-      if (user != null) {
-        await fireBaseAuthServices.deleteUser();
-      }
+      await deleteUser(user);
       log(
         'Exception in AuthRepoImpl. createUserWithEmailAndPassword: ${e.toString()}',
       );
       return left(ServerFailur('لقد حدث خطأ ما.'));
+    }
+  }
+
+  Future<void> deleteUser(User? user) async {
+    if (user != null) {
+      await fireBaseAuthServices.deleteUser();
     }
   }
 
@@ -63,10 +65,16 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future<Either<Failure, UserEntity>> signInWithGoogle() async {
+    User? user;
     try {
-      var user = await fireBaseAuthServices.signInWithGoogle();
-      return right(UserModel.fromFirebaseUser(user));
+      user = await fireBaseAuthServices.signInWithGoogle();
+
+      var userEntity = UserModel.fromFirebaseUser(user);
+      await addUserDate(user: userEntity);
+
+      return right(userEntity);
     } catch (e) {
+      await deleteUser(user);
       log(
         'Exception in AuthRepoImpl. signInWithGoogle: ${e.toString()}',
       );
@@ -76,10 +84,15 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future<Either<Failure, UserEntity>> signInWithFacebook() async {
+    User? user;
     try {
-      var user = await fireBaseAuthServices.signInWithFacebook();
-      return right(UserModel.fromFirebaseUser(user));
+      user = await fireBaseAuthServices.signInWithFacebook();
+      var userEntity = UserModel.fromFirebaseUser(user);
+      await addUserDate(user: userEntity);
+
+      return right(userEntity);
     } catch (e) {
+      await deleteUser(user);
       log(
         'Exception in AuthRepoImpl. signInWithFacebook: ${e.toString()}',
       );

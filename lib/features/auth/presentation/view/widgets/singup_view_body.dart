@@ -66,7 +66,7 @@ class _SingnupViewBodyState extends State<SingnupViewBody> {
                       context
                           .read<SignupCubit>()
                           .createUserWithEmailAndPassword(
-                              name, email, password);
+                              email, name, password);
                     } else {
                       buiddErrorBar(
                           context, 'يجب الموافقة على الشروط والاحكام');

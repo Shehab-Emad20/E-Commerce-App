@@ -34,8 +34,10 @@ class AuthRepoImpl extends AuthRepo {
       String email, String password) async {
     try {
       var user = await fireBaseAuthServices.signInWithEmailAndPassword(
-          email: email, password: password);
-      return right(UserModel.fromFirebaseUser(user));
+        email: email,
+        password: password,
+      );
+      return right(UserModel.fromFirebaseUser(user!));
     } on CustomExcepton catch (e) {
       return left(ServerFailur(e.message));
     } catch (e) {

@@ -9,11 +9,12 @@ abstract class AuthRepo {
     String name,
   );
 
-  Future<Either<Failure, UserEntity>> signInWithEmailAndPassword(
+  Future<Either<Failure, UserEntity>> signinWithEmailAndPassword(
       String email, String password);
 
   Future<Either<Failure, UserEntity>> signInWithGoogle();
   Future<Either<Failure, UserEntity>> signInWithFacebook();
 
   Future addUserDate({required UserEntity user});
+  Future<UserEntity> getUserData({required String uid});
 }

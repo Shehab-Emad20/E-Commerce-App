@@ -15,7 +15,7 @@ class SigninCubit extends Cubit<SigninState> {
     String password,
   ) async {
     emit(SigninLoading());
-    var result = await authRepo.signInWithEmailAndPassword(
+    var result = await authRepo.signinWithEmailAndPassword(
       email,
       password,
     );

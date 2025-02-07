@@ -3,8 +3,8 @@ import 'package:flutter_application_1/features/auth/domain/entites/user_entity.d
 
 class UserModel extends UserEntity {
   UserModel({
-    required super.email,
     required super.name,
+    required super.email,
     required super.uId,
   });
 
@@ -16,9 +16,11 @@ class UserModel extends UserEntity {
     );
   }
 
-  factory UserModel.formJson(Map<String, dynamic> json) => UserModel(
-        name: json['name'],
-        email: json['email'],
-        uId: json['uId'],
-      );
+  factory UserModel.formJson(Map<String, dynamic> json) {
+    return UserModel(
+      email: json['email'],
+      name: json['name'],
+      uId: json['uId'],
+    );
+  }
 }

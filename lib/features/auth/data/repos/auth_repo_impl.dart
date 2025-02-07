@@ -45,14 +45,15 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<Either<Failure, UserEntity>> signInWithEmailAndPassword(
+  Future<Either<Failure, UserEntity>> signinWithEmailAndPassword(
       String email, String password) async {
     try {
       var user = await fireBaseAuthServices.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return right(UserModel.fromFirebaseUser(user));
+      var userEntity = await getUserData(uid: user.uid);
+      return right(userEntity);
     } on CustomExcepton catch (e) {
       return left(ServerFailur(e.message));
     } catch (e) {
@@ -104,5 +105,13 @@ class AuthRepoImpl extends AuthRepo {
   Future addUserDate({required UserEntity user}) async {
     await databaseService.addData(
         path: BackendEndpoints.addUserData, data: user.toMap());
+  }
+
+  @override
+  Future<UserEntity> getUserData({required String uid}) async {
+    var userData = await databaseService.getData(
+        path: BackendEndpoints.getUserData, docuementId: uid);
+
+    return UserModel.formJson(userData);
   }
 }

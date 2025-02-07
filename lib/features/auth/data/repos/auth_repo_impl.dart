@@ -71,7 +71,14 @@ class AuthRepoImpl extends AuthRepo {
       user = await fireBaseAuthServices.signInWithGoogle();
 
       var userEntity = UserModel.fromFirebaseUser(user);
-      await addUserDate(user: userEntity);
+      var isUserExits = await databaseService.checkIfDataExists(
+          path: BackendEndpoints.isUserExists, docuementId: user.uid);
+
+      if (isUserExits) {
+        await getUserData(uid: user.uid);
+      } else {
+        await addUserDate(user: userEntity);
+      }
 
       return right(userEntity);
     } catch (e) {
@@ -90,7 +97,14 @@ class AuthRepoImpl extends AuthRepo {
       user = await fireBaseAuthServices.signInWithFacebook();
       var userEntity = UserModel.fromFirebaseUser(user);
       await addUserDate(user: userEntity);
+      var isUserExits = await databaseService.checkIfDataExists(
+          path: BackendEndpoints.isUserExists, docuementId: user.uid);
 
+      if (isUserExits) {
+        await getUserData(uid: user.uid);
+      } else {
+        await addUserDate(user: userEntity);
+      }
       return right(userEntity);
     } catch (e) {
       await deleteUser(user);

@@ -23,7 +23,7 @@ class AuthRepoImpl extends AuthRepo {
     try {
       user = await fireBaseAuthServices.createUserWithEmailAndPassword(
           email: email, password: password);
-      var userEntity = UserEntity(email: email, name: name, uId: user.uid);
+      var userEntity = UserEntity(name: name, email: email, uId: user.uid);
       await addUserDate(user: userEntity);
       return right(userEntity);
     } on CustomExcepton catch (e) {
@@ -104,7 +104,9 @@ class AuthRepoImpl extends AuthRepo {
   @override
   Future addUserDate({required UserEntity user}) async {
     await databaseService.addData(
-        path: BackendEndpoints.addUserData, data: user.toMap());
+        path: BackendEndpoints.addUserData,
+        data: user.toMap(),
+        docuementId: user.uId);
   }
 
   @override

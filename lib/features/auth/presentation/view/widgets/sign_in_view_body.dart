@@ -63,17 +63,18 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               ),
               SizedBox(height: 33),
               CustomButton(
-                  text: 'تسجيل الدخول',
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      formKey.currentState!.save();
-                      context.read<SigninCubit>().signin(email, password);
-                    } else {
-                      setState(() {
-                        autovalidateMode = AutovalidateMode.always;
-                      });
-                    }
-                  }),
+                text: 'تسجيل الدخول',
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+
+                    context.read<SigninCubit>().signin(email, password);
+                  } else {
+                    autovalidateMode = AutovalidateMode.always;
+                    setState(() {});
+                  }
+                },
+              ),
               SizedBox(height: 33),
               DontHaveAccountWidegt(),
               SizedBox(height: 33),

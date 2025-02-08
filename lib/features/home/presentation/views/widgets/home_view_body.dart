@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/core/utils/widgets/search_text_field.dart';
 import 'package:flutter_application_1/features/home/presentation/views/widgets/custom_home_app_bar.dart';
-import 'package:flutter_application_1/features/home/presentation/views/widgets/featured_item.dart';
+import 'package:flutter_application_1/features/home/presentation/views/widgets/featured_list.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -20,7 +20,7 @@ class HomeViewBody extends StatelessWidget {
               SizedBox(height: kDefaultPadding),
               SearchTextFiield(),
               SizedBox(height: 12),
-              FeaturedItem(),
+              FeaturedList()
             ],
           ),
         ),

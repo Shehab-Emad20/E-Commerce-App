@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/utils/app_images.dart';
 import 'package:flutter_application_1/core/utils/app_text_styles.dart';
 import 'package:flutter_application_1/features/home/presentation/views/widgets/featured_item_button.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as svg;
 
 class FeaturedItem extends StatelessWidget {
@@ -16,13 +17,24 @@ class FeaturedItem extends StatelessWidget {
         aspectRatio: 342 / 158,
         child: Stack(
           children: [
-            Image.asset(Assets.imagesWatermelonTest),
+            Positioned(
+              left: 0,
+              bottom: 0,
+              top: 0,
+              right: itemWidth * .4,
+              child: SvgPicture.asset(
+                Assets.imagesPageViewItem2Image,
+                fit: BoxFit.fill,
+              ),
+            ),
             Container(
               width: itemWidth * .5,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: svg.Svg(Assets.imagesFeaturedItemBackground),
-                  fit: BoxFit.cover, // Adjust fit as needed
+                  image: svg.Svg(
+                    Assets.imagesFeaturedItemBackground,
+                  ),
+                  fit: BoxFit.fill,
                 ),
               ),
               child: Padding(

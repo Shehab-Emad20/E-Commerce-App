@@ -25,7 +25,9 @@ class CustomBottomNavigationBar extends StatelessWidget {
           ),
         ],
       ),
-      child: InActiveItem(image: Assets.imagesOutlineHome1),
+      child: Row(
+        
+      )
     );
   }
 }
@@ -38,5 +40,26 @@ class InActiveItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(image);
+  }
+}
+
+class NaivgationBarItem extends StatelessWidget {
+  const NaivgationBarItem({super.key, required this.isSelected});
+
+  final bool isSelected;
+  @override
+  Widget build(BuildContext context) {
+    return isSelected
+        ? ActiveItem()
+        : InActiveItem(image: Assets.imagesOutlineHome1);
+  }
+}
+
+class ActiveItem extends StatelessWidget {
+  const ActiveItem({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }

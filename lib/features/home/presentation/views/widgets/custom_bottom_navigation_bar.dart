@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_application_1/features/home/domain/entites/bottom_navigation_bar_entity.dart';
 import 'package:flutter_application_1/features/home/presentation/views/widgets/naivgation_bar_item.dart';
 
@@ -35,13 +34,22 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           ],
         ),
         child: Row(
-      
           children: bottomNavigationBarItems.asMap().entries.map((e) {
             var index = e.key;
             var entity = e.value;
-            return NaivgationBarItem(
-              isSelected: selectedIndex == index,
-              bottomNavigationBarEntity: entity,
+            return Expanded(
+              flex: index == selectedIndex ? 3 : 2,
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedIndex = index;
+                  });
+                },
+                child: NaivgationBarItem(
+                  isSelected: selectedIndex == index,
+                  bottomNavigationBarEntity: entity,
+                ),
+              ),
             );
           }).toList(),
         ));

@@ -1,10 +1,13 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/core/error/exception.dart';
 import 'package:flutter_application_1/core/error/failures.dart';
 import 'package:flutter_application_1/core/services/data_services.dart';
 import 'package:flutter_application_1/core/services/fire_base_auth_services.dart';
+import 'package:flutter_application_1/core/services/shared_preferences_singleton.dart';
 import 'package:flutter_application_1/core/utils/backend_endpoints.dart';
 import 'package:flutter_application_1/features/auth/data/models/user_model.dart';
 import 'package:flutter_application_1/features/auth/domain/entites/user_entity.dart';
@@ -53,8 +56,7 @@ class AuthRepoImpl extends AuthRepo {
         password: password,
       );
       var userEntity = await getUserData(uid: user.uid);
-     
-     
+
       return right(userEntity);
     } on CustomExcepton catch (e) {
       return left(ServerFailur(e.message));
@@ -121,8 +123,7 @@ class AuthRepoImpl extends AuthRepo {
   Future addUserDate({required UserEntity user}) async {
     await databaseService.addData(
         path: BackendEndpoints.addUserData,
-        data: user.toMap(),
-        docuementId: user.uId);
+        data: UserModel.fromEntity(user).toMap());
   }
 
   @override
@@ -131,5 +132,11 @@ class AuthRepoImpl extends AuthRepo {
         path: BackendEndpoints.getUserData, docuementId: uid);
 
     return UserModel.formJson(userData);
+  }
+
+  @override
+  Future saveUserData({required UserEntity user}) async {
+    var jsonData = jsonEncode(UserModel.fromEntity(user).toMap());
+    await Prefs.setString(kUser, jsonData);
   }
 }

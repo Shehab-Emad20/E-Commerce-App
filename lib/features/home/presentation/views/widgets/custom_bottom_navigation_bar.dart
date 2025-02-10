@@ -2,15 +2,22 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_application_1/features/home/domain/entites/bottom_navigation_bar_entity.dart';
 import 'package:flutter_application_1/features/home/presentation/views/widgets/naivgation_bar_item.dart';
-import 'package:flutter_svg/svg.dart';
 
-class CustomBottomNavigationBar extends StatelessWidget {
+class CustomBottomNavigationBar extends StatefulWidget {
   const CustomBottomNavigationBar({super.key});
+
+  @override
+  State<CustomBottomNavigationBar> createState() =>
+      _CustomBottomNavigationBarState();
+}
+
+class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 357,
+        width: 375,
         height: 70,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -28,16 +35,15 @@ class CustomBottomNavigationBar extends StatelessWidget {
           ],
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: bottomNavigationBarItems.map((e) {
+      
+          children: bottomNavigationBarItems.asMap().entries.map((e) {
+            var index = e.key;
+            var entity = e.value;
             return NaivgationBarItem(
-                bottomNavigationBarEntity: e, isSelected: false);
+              isSelected: selectedIndex == index,
+              bottomNavigationBarEntity: entity,
+            );
           }).toList(),
         ));
   }
 }
-
-
-
-
-

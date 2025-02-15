@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:flutter_application_1/core/entity/add_product_entity.dart';
 import 'package:flutter_application_1/core/models/review_model.dart';
 
 class AddProducttModel {
@@ -15,7 +14,9 @@ class AddProducttModel {
   final int numberOfCalories;
   final int unitAmount;
   final num avgRating = 0;
+  final int sellingCount;
   final int ratingCount = 0;
+
   final List<ReviewModel> reviews;
   AddProducttModel(
       {required this.name,
@@ -29,25 +30,29 @@ class AddProducttModel {
       required this.numberOfCalories,
       required this.unitAmount,
       this.isOrganic = false,
+      required this.sellingCount,
       required this.reviews});
 
-  factory AddProducttModel.fromEntity(AddProductEntity addProductInputEntity) =>
-      AddProducttModel(
-        name: addProductInputEntity.name,
-        code: addProductInputEntity.code,
-        description: addProductInputEntity.description,
-        price: addProductInputEntity.price,
-        image: addProductInputEntity.image,
-        isFeatured: addProductInputEntity.isFeatured,
-        imageUrl: addProductInputEntity.imageUrl,
-        expirationMonths: addProductInputEntity.expirationMonths,
-        numberOfCalories: addProductInputEntity.numberOfCalories,
-        unitAmount: addProductInputEntity.unitAmount,
-        isOrganic: addProductInputEntity.isOrganic,
-        reviews: addProductInputEntity.reviews
-            .map((e) => ReviewModel.fromEntiyt(e))
-            .toList(),
-      );
+  factory AddProducttModel.fromJson(Map<String, dynamic> json) {
+    return AddProducttModel(
+      name: json['name'],
+      code: json['code'],
+      description: json['description'],
+      price: json['price'],
+      image: File(json['image']),
+      isFeatured: json['isFeatured'],
+      imageUrl: json['imageUrl'],
+      expirationMonths: json['expirationMonths'],
+      numberOfCalories: json['numberOfCalories'],
+      unitAmount: json['unitAmount'],
+      isOrganic: json['isOrganic'],
+      sellingCount: json['sellingCount'],
+      reviews: json['reviews'] != null
+          ? List<ReviewModel>.from(
+              json['reviews'].map((e) => ReviewModel.fromJson(e)))
+          : [],
+    );
+  }
 
   toJson() {
     return {

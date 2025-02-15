@@ -1,7 +1,9 @@
 import 'dart:io';
+
+import 'package:flutter_application_1/core/entity/add_product_entity.dart';
 import 'package:flutter_application_1/core/models/review_model.dart';
 
-class AddProducttModel {
+class ProducttModel {
   final String name;
   final String code;
   final String description;
@@ -18,7 +20,7 @@ class AddProducttModel {
   final int ratingCount = 0;
 
   final List<ReviewModel> reviews;
-  AddProducttModel(
+  ProducttModel(
       {required this.name,
       required this.code,
       required this.description,
@@ -33,8 +35,8 @@ class AddProducttModel {
       required this.sellingCount,
       required this.reviews});
 
-  factory AddProducttModel.fromJson(Map<String, dynamic> json) {
-    return AddProducttModel(
+  factory ProducttModel.fromJson(Map<String, dynamic> json) {
+    return ProducttModel(
       name: json['name'],
       code: json['code'],
       description: json['description'],
@@ -51,6 +53,22 @@ class AddProducttModel {
           ? List<ReviewModel>.from(
               json['reviews'].map((e) => ReviewModel.fromJson(e)))
           : [],
+    );
+  }
+  ProductEntity toEntity() {
+    return ProductEntity(
+      name: name,
+      code: code,
+      description: description,
+      price: price,
+      image: image,
+      isFeatured: isFeatured,
+      imageUrl: imageUrl,
+      expirationMonths: expirationMonths,
+      numberOfCalories: numberOfCalories,
+      unitAmount: unitAmount,
+      isOrganic: isOrganic,
+      reviews: reviews.map((e) => e.toEntity()).toList(),
     );
   }
 

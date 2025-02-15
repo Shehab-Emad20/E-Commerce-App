@@ -31,6 +31,14 @@ class ReviewModel {
         data: json['data'],
         reviewDescription: json['reviewDescription']);
   }
+  ReviewEntity toEntity() {
+    return ReviewEntity(
+        name: name,
+        image: image,
+        ratting: ratting,
+        data: data,
+        reviewDescription: reviewDescription);
+  }
 
   toJson() {
     return {

@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_application_1/core/entity/review_entity.dart';
 
-class AddProductEntity {
+class ProductEntity {
   final String name;
   final String code;
   final String description;
@@ -18,7 +18,7 @@ class AddProductEntity {
   final int ratingCount = 0;
   final List<ReviewEntity> reviews;
 
-  AddProductEntity(
+  ProductEntity(
       {required this.name,
       required this.code,
       required this.description,

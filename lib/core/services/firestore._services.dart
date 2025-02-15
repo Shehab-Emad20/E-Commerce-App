@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_application_1/core/services/data_services.dart';
 
@@ -16,11 +18,15 @@ class FirestoreServices implements DatabaseService {
   }
 
   @override
-  Future<Map<String, dynamic>> getData(
-      {required String path, required String docuementId}) async {
-    var data = await firestore.collection(path).doc(docuementId).get();
+  Future<dynamic> getData({required String path, String? docuementId}) async {
+    if (docuementId != null) {
+      var data = await firestore.collection(path).doc(docuementId).get();
 
-    return data.data() as Map<String, dynamic>;
+      return data.data() as Map<String, dynamic>;
+    } else {
+      var data = await firestore.collection(path).get();
+      return data.docs.map((e) => e.data()).toList();
+    }
   }
 
   @override

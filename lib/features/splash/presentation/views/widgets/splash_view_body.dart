@@ -4,7 +4,7 @@ import 'package:flutter_application_1/core/services/fire_base_auth_services.dart
 import 'package:flutter_application_1/core/services/shared_preferences_singleton.dart';
 import 'package:flutter_application_1/core/utils/app_images.dart';
 import 'package:flutter_application_1/features/auth/presentation/view/sign_in.dart';
-import 'package:flutter_application_1/features/home/presentation/views/home_view.dart';
+import 'package:flutter_application_1/features/home/presentation/views/main_view.dart';
 import 'package:flutter_application_1/features/on_boarding/presentation/views/on_boarding_view.dart';
 
 import 'package:flutter_svg/svg.dart';
@@ -49,7 +49,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
         var isLoggedIn = FireBaseAuthServices().isLoggedIn();
 
         if (isLoggedIn) {
-          Navigator.pushReplacementNamed(context, HomeView.routeName);
+          Navigator.pushReplacementNamed(context, MainView.routeName);
         } else {
           Navigator.pushReplacementNamed(context, SigninView.routeName);
         }

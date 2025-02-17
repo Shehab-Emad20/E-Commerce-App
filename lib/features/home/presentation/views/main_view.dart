@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/features/home/presentation/views/widgets/custom_bottom_navigation_bar.dart';
-import 'package:flutter_application_1/features/home/presentation/views/widgets/home_view_body.dart';
+import 'package:flutter_application_1/features/home/presentation/views/widgets/home_view.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class MainView extends StatelessWidget {
+  const MainView({super.key});
 
   static const routeName = 'home_view';
 
@@ -12,7 +12,7 @@ class HomeView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: CustomBottomNavigationBar(),
-        body: HomeViewBody(),
+        body: HomeView(),
       ),
     );
   }

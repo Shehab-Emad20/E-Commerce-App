@@ -1,3 +1,5 @@
+import 'package:flutter_application_1/core/repos/products_repo/products_repo.dart';
+import 'package:flutter_application_1/core/repos/products_repo/products_repo_impl.dart';
 import 'package:flutter_application_1/core/services/data_services.dart';
 import 'package:flutter_application_1/core/services/fire_base_auth_services.dart';
 import 'package:flutter_application_1/core/services/firestore._services.dart';
@@ -15,6 +17,12 @@ void setup() {
     AuthRepoImpl(
       fireBaseAuthServices: getIt<FireBaseAuthServices>(),
       databaseService: getIt<DatabaseService>(),
+    ),
+  );
+
+  getIt.registerSingleton<ProductsRepo>(
+    ProductsRepoImpl(
+      getIt<DatabaseService>(),
     ),
   );
 }

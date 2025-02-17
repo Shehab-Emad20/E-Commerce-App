@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:flutter_application_1/core/entity/review_entity.dart';
 
@@ -7,7 +6,7 @@ class ProductEntity {
   final String code;
   final String description;
   final num price;
-  final File image;
+
   final bool isFeatured;
   String? imageUrl;
   final int expirationMonths;
@@ -23,7 +22,7 @@ class ProductEntity {
       required this.code,
       required this.description,
       required this.price,
-      required this.image,
+     
       required this.isFeatured,
       this.imageUrl,
       required this.expirationMonths,

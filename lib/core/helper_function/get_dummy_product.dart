@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter_application_1/core/entity/add_product_entity.dart';
 
 ProductEntity getDummyProduct() {
@@ -8,7 +6,7 @@ ProductEntity getDummyProduct() {
     code: "123",
     description: "description",
     price: 10,
-    image: File(""),
+
     isFeatured: true,
     imageUrl: "imageUrl",
     expirationMonths: 12,

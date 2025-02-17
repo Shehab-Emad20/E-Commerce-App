@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter_application_1/core/entity/add_product_entity.dart';
+import 'package:flutter_application_1/core/helper_function/get_avg_rating.dart';
 import 'package:flutter_application_1/core/models/review_model.dart';
 
 class ProducttModel {
@@ -8,14 +7,13 @@ class ProducttModel {
   final String code;
   final String description;
   final num price;
-  final File image;
   final bool isFeatured;
   String? imageUrl;
   final int expirationMonths;
   final bool isOrganic;
   final int numberOfCalories;
   final int unitAmount;
-  final num avgRating = 0;
+  final num avgRating;
   final int sellingCount;
   final int ratingCount = 0;
 
@@ -25,7 +23,6 @@ class ProducttModel {
       required this.code,
       required this.description,
       required this.price,
-      required this.image,
       required this.isFeatured,
       this.imageUrl,
       required this.expirationMonths,
@@ -33,15 +30,16 @@ class ProducttModel {
       required this.unitAmount,
       this.isOrganic = false,
       required this.sellingCount,
+      required this.avgRating,
       required this.reviews});
 
   factory ProducttModel.fromJson(Map<String, dynamic> json) {
     return ProducttModel(
+      avgRating: getAvgRating(json['avgRating']),
       name: json['name'],
       code: json['code'],
       description: json['description'],
       price: json['price'],
-      image: File(json['image']),
       isFeatured: json['isFeatured'],
       imageUrl: json['imageUrl'],
       expirationMonths: json['expirationMonths'],
@@ -61,7 +59,6 @@ class ProducttModel {
       code: code,
       description: description,
       price: price,
-      image: image,
       isFeatured: isFeatured,
       imageUrl: imageUrl,
       expirationMonths: expirationMonths,
@@ -88,3 +85,4 @@ class ProducttModel {
     };
   }
 }
+

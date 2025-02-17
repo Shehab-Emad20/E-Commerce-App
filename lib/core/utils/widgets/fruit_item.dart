@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/core/entity/add_product_entity.dart';
 import 'package:flutter_application_1/core/utils/app_colors.dart';
 import 'package:flutter_application_1/core/utils/app_images.dart';
 import 'package:flutter_application_1/core/utils/app_text_styles.dart';
 
 class FruitItem extends StatelessWidget {
-  const FruitItem({super.key});
+  const FruitItem({super.key, required this.productEntity});
+
+  final ProductEntity productEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -30,18 +33,22 @@ class FruitItem extends StatelessWidget {
             Positioned.fill(
               child: Column(
                 children: [
-                  Image.asset(Assets.imagesWatermelonTest),
+                  Flexible(
+                    child: Image.network(
+                      productEntity.imageUrl!,
+                    ),
+                  ),
                   SizedBox(height: 24),
                   ListTile(
                     title: Text(
                         textAlign: TextAlign.right,
-                        'بطيخ',
+                        productEntity.name,
                         style: TextStyles.semiBold16),
                     subtitle: Text.rich(
                       TextSpan(
                         children: [
                           TextSpan(
-                            text: '30جنيه',
+                            text: ' ${productEntity.price} جنيه',
                             style: TextStyles.bold13.copyWith(
                               color: AppColors.secondaryColor,
                             ),
@@ -52,7 +59,7 @@ class FruitItem extends StatelessWidget {
                                 .copyWith(color: AppColors.lightsecondaryColor),
                           ),
                           TextSpan(
-                            text: 'كيلو',
+                            text: ' ${productEntity.unitAmount} كيلو',
                             style: TextStyles.semiBold13
                                 .copyWith(color: AppColors.lightsecondaryColor),
                           ),

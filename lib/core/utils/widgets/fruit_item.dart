@@ -3,7 +3,7 @@ import 'package:flutter_application_1/core/entity/add_product_entity.dart';
 import 'package:flutter_application_1/core/utils/app_colors.dart';
 import 'package:flutter_application_1/core/utils/app_images.dart';
 import 'package:flutter_application_1/core/utils/app_text_styles.dart';
-import 'package:flutter_application_1/features/home/presentation/views/widgets/custom_image_network.dart';
+import 'package:flutter_application_1/core/utils/widgets/custom_image_network.dart';
 
 class FruitItem extends StatelessWidget {
   const FruitItem({super.key, required this.productEntity});

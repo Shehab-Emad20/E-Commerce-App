@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/utils/app_colors.dart';
 import 'package:flutter_application_1/core/utils/app_text_styles.dart';
+import 'package:flutter_application_1/features/Cart/presentation/Views/widgets/cart_action_button.dart';
 
 class CartItemActionButtons extends StatelessWidget {
   const CartItemActionButtons({super.key});
@@ -8,7 +9,7 @@ class CartItemActionButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(children: [
-      CartItemActionButton(
+      CartActionButton(
         icon: Icons.add,
         color: AppColors.primaryColor,
         onTap: () {},
@@ -22,44 +23,11 @@ class CartItemActionButtons extends StatelessWidget {
           style: TextStyles.bold16,
         ),
       ),
-      CartItemActionButton(
+      CartActionButton(
           icon: Icons.remove,
           color: Colors.grey,
           onTap: () {},
           iconColor: Color(0xFFF3F5F7)),
     ]);
-  }
-}
-
-class CartItemActionButton extends StatelessWidget {
-  const CartItemActionButton(
-      {super.key,
-      required this.icon,
-      required this.color,
-      required this.onTap,
-      required this.iconColor});
-  final IconData icon;
-  final Color color, iconColor;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 24,
-      height: 24,
-      padding: EdgeInsets.all(2),
-      decoration: ShapeDecoration(
-        color: color,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(100),
-        ),
-      ),
-      child: FittedBox(
-        child: Icon(
-          icon,
-          color: iconColor,
-        ),
-      ),
-    );
   }
 }

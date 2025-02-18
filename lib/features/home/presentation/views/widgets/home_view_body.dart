@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/core/cubits/products_cubits/products_cubits.dart';
 import 'package:flutter_application_1/core/utils/widgets/search_text_field.dart';
-import 'package:flutter_application_1/features/home/presentation/views/widgets/products_grid_view_bloc_builder.dart';
+import 'package:flutter_application_1/features/Products/presentation/views/widgets/products_grid_view_bloc_builder.dart';
 import 'package:flutter_application_1/features/home/presentation/views/widgets/custom_home_app_bar.dart';
 import 'package:flutter_application_1/features/home/presentation/views/widgets/featured_list.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

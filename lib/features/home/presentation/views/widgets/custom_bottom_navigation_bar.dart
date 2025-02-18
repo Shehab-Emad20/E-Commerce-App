@@ -3,8 +3,9 @@ import 'package:flutter_application_1/features/home/domain/entites/bottom_naviga
 import 'package:flutter_application_1/features/home/presentation/views/widgets/naivgation_bar_item.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
-  const CustomBottomNavigationBar({super.key, required this.onItemTapped});
- final ValueChanged<int> onItemTapped;
+  const CustomBottomNavigationBar(
+      {super.key, required this.onItemTapped, required int currentIndex});
+  final ValueChanged<int> onItemTapped;
   @override
   State<CustomBottomNavigationBar> createState() =>
       _CustomBottomNavigationBarState();
@@ -16,7 +17,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 375,
+        width: MediaQuery.of(context).size.width,
         height: 70,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -44,6 +45,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                   setState(() {
                     selectedIndex = index;
                   });
+                  widget.onItemTapped(index);
                 },
                 child: NaivgationBarItem(
                   isSelected: selectedIndex == index,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/features/home/presentation/views/widgets/cart_view.dart';
+import 'package:flutter_application_1/features/Cart/presentation/Views/cart_view.dart';
 import 'package:flutter_application_1/features/home/presentation/views/widgets/custom_bottom_navigation_bar.dart';
 import 'package:flutter_application_1/features/home/presentation/views/widgets/home_view.dart';
-import 'package:flutter_application_1/features/home/presentation/views/widgets/products_view.dart';
+import 'package:flutter_application_1/features/Products/presentation/views/products_view.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -14,19 +14,22 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
-  int currentViewIndex = 0;
+  int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CustomBottomNavigationBar(
+        currentIndex: _currentIndex,
         onItemTapped: (index) {
-          currentViewIndex = index;
-          setState(() {});
+          setState(() {
+            _currentIndex = index;
+          });
         },
       ),
       body: SafeArea(
         child: IndexedStack(
-          index: currentViewIndex,
+          index: _currentIndex,
           children: [
             HomeView(),
             ProductsView(),
@@ -37,3 +40,4 @@ class _MainViewState extends State<MainView> {
     );
   }
 }
+

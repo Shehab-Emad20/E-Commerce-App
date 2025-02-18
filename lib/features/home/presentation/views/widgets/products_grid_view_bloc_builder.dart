@@ -6,8 +6,8 @@ import 'package:flutter_application_1/features/home/presentation/views/widgets/b
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class BestSellingGridViewBlocBuilder extends StatelessWidget {
-  const BestSellingGridViewBlocBuilder({
+class ProductsGridViewBlocBuilder extends StatelessWidget {
+  const ProductsGridViewBlocBuilder({
     super.key,
   });
 

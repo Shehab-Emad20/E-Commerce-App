@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/core/cubits/products_cubits/products_cubits.dart';
+import 'package:flutter_application_1/core/helper_function/build_appbar.dart';
 import 'package:flutter_application_1/core/utils/widgets/search_text_field.dart';
-import 'package:flutter_application_1/features/home/presentation/views/widgets/best_selling_grid_view_bloc_builder.dart';
+import 'package:flutter_application_1/features/home/presentation/views/widgets/products_grid_view_bloc_builder.dart';
 import 'package:flutter_application_1/features/home/presentation/views/widgets/custom_home_app_bar.dart';
 import 'package:flutter_application_1/features/home/presentation/views/widgets/products_view_header.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,6 +33,7 @@ class _ProductsViewBodyState extends State<ProductsViewBody> {
               SizedBox(height: kDefaultPadding),
               CustomHomeAppBar(),
               SizedBox(height: kDefaultPadding),
+              buildAppBar(context, title: 'المنتجات', showBackButton: false),
               SearchTextFiield(),
               SizedBox(height: 12),
               ProductsViewHeader(
@@ -40,7 +42,7 @@ class _ProductsViewBodyState extends State<ProductsViewBody> {
             ],
           ),
         ),
-        BestSellingGridViewBlocBuilder(),
+        ProductsGridViewBlocBuilder(),
       ]),
     );
   }

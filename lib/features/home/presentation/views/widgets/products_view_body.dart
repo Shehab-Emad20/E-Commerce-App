@@ -31,8 +31,6 @@ class _ProductsViewBodyState extends State<ProductsViewBody> {
           child: Column(
             children: [
               SizedBox(height: kDefaultPadding),
-              CustomHomeAppBar(),
-              SizedBox(height: kDefaultPadding),
               buildAppBar(context, title: 'المنتجات', showBackButton: false),
               SearchTextFiield(),
               SizedBox(height: 12),

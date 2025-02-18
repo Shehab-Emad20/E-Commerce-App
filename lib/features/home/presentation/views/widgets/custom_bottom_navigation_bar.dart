@@ -3,8 +3,8 @@ import 'package:flutter_application_1/features/home/domain/entites/bottom_naviga
 import 'package:flutter_application_1/features/home/presentation/views/widgets/naivgation_bar_item.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
-  const CustomBottomNavigationBar({super.key});
-
+  const CustomBottomNavigationBar({super.key, required this.onItemTapped});
+ final ValueChanged<int> onItemTapped;
   @override
   State<CustomBottomNavigationBar> createState() =>
       _CustomBottomNavigationBarState();

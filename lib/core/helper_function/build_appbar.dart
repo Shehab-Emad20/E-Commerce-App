@@ -2,13 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/utils/app_text_styles.dart';
 import 'package:flutter_application_1/core/utils/widgets/notification_widget.dart';
 
-AppBar buildAppBar(context,
-    {required String title, bool showBackButton = true}) {
+AppBar buildAppBar(
+  context, {
+  required String title,
+  bool showBackButton = true,
+  bool shownotification = true,
+}) {
   return AppBar(
     actions: [
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: NotificationWidget(),
+      Visibility(
+        visible: shownotification,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: NotificationWidget(),
+        ),
       ),
     ],
     leading: Visibility(

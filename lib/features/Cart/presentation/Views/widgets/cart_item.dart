@@ -23,8 +23,7 @@ class CartItem extends StatelessWidget {
               color: Color(0xFFEBF9F1),
             ),
             child: CustomImageNetwork(
-                imageUrl:
-                    'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+                imageUrl: cartItemEntity.productEntity.imageUrl!),
           ),
           SizedBox(width: 17),
           Expanded(
@@ -34,21 +33,22 @@ class CartItem extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text('بطيخ', style: TextStyles.bold13),
+                    Text(cartItemEntity.productEntity.name,
+                        style: TextStyles.bold13),
                     Spacer(),
                     GestureDetector(
                         onTap: () {},
                         child: SvgPicture.asset(Assets.imagesTrash))
                   ],
                 ),
-                Text('3كم',
+                Text('${cartItemEntity.calculateTotalWeight()} كم',
                     style: TextStyles.regular13
                         .copyWith(color: AppColors.secondaryColor)),
                 Row(
                   children: [
                     CartItemActionButtons(),
                     Spacer(),
-                    Text('20 جنية',
+                    Text('${cartItemEntity.calculateTotalPrice()} جنية',
                         style: TextStyles.bold16
                             .copyWith(color: AppColors.secondaryColor)),
                   ],

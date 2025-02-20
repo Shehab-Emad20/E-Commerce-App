@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
-import 'package:flutter_application_1/core/cubits/products_cubits/products_cubits.dart';
 import 'package:flutter_application_1/core/helper_function/build_appbar.dart';
 import 'package:flutter_application_1/core/utils/widgets/custom_button.dart';
 import 'package:flutter_application_1/features/Cart/presentation/Views/widgets/cart_header.dart';

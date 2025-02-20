@@ -7,4 +7,4 @@ final class CartCubitInitial extends CartState {}
 
 final class CartItemAdded extends CartState {}
 
-final class CartItemRemove extends CartState {}
+final class CartItemRemoved extends CartState {}

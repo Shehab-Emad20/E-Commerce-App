@@ -5,6 +5,8 @@ import 'package:flutter_application_1/core/utils/app_text_styles.dart';
 import 'package:flutter_application_1/core/utils/widgets/custom_image_network.dart';
 import 'package:flutter_application_1/features/Cart/domain/entites/cart_item_entity.dart';
 import 'package:flutter_application_1/features/Cart/presentation/Views/widgets/cart_item_action_buttons.dart';
+import 'package:flutter_application_1/features/Cart/presentation/cubit/cart_ubit/cart_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CartItem extends StatelessWidget {
@@ -37,7 +39,11 @@ class CartItem extends StatelessWidget {
                         style: TextStyles.bold13),
                     Spacer(),
                     GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          context
+                              .read<CartCubit>()
+                              .deleteCartItem(cartItemEntity);
+                        },
                         child: SvgPicture.asset(Assets.imagesTrash))
                   ],
                 ),

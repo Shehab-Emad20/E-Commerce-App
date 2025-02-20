@@ -3,7 +3,7 @@ import 'package:flutter_application_1/core/entity/add_product_entity.dart';
 import 'package:flutter_application_1/core/utils/app_colors.dart';
 import 'package:flutter_application_1/core/utils/app_text_styles.dart';
 import 'package:flutter_application_1/core/utils/widgets/custom_image_network.dart';
-import 'package:flutter_application_1/features/Cart/presentation/cubit/cart_ubit/cart_cubit.dart';
+import 'package:flutter_application_1/features/Cart/presentation/cubit/cart_cubit/cart_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FruitItem extends StatelessWidget {

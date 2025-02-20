@@ -5,7 +5,7 @@ import 'package:flutter_application_1/core/utils/widgets/custom_button.dart';
 import 'package:flutter_application_1/features/Cart/presentation/Views/widgets/cart_header.dart';
 import 'package:flutter_application_1/features/Cart/presentation/Views/widgets/cart_item_list.dart';
 import 'package:flutter_application_1/features/Cart/presentation/Views/widgets/custom_divider.dart';
-import 'package:flutter_application_1/features/Cart/presentation/cubit/cart_ubit/cart_cubit.dart';
+import 'package:flutter_application_1/features/Cart/presentation/cubit/cart_cubit/cart_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartViewBody extends StatelessWidget {

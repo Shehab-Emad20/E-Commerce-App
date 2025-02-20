@@ -60,7 +60,7 @@ class _SingnupViewBodyState extends State<SingnupViewBody> {
             SizedBox(height: 30),
             CustomButton(
                 onPressed: () {
-                 if (formKey.currentState!.validate()) {
+                  if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
                     if (isTermsAccepted) {
                       context
@@ -71,8 +71,7 @@ class _SingnupViewBodyState extends State<SingnupViewBody> {
                             userName,
                           );
                     } else {
-                      buiddErrorBar(
-                          context, 'يجب الموافقة على الشروط والاحكام');
+                      buidErrorBar(context, 'يجب الموافقة على الشروط والاحكام');
                     }
                   } else {
                     setState(() {

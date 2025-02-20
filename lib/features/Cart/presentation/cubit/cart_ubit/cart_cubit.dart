@@ -6,7 +6,7 @@ import 'package:meta/meta.dart';
 
 part 'cart_cubit_state.dart';
 
-class CartCubit extends Cubit<Carttate> {
+class CartCubit extends Cubit<CartState> {
   CartCubit() : super(CartCubitInitial());
 
   CartEntity cartEntity = CartEntity([]);
@@ -20,6 +20,6 @@ class CartCubit extends Cubit<Carttate> {
       cartEntity.addCartItem(carItem);
     }
 
-    emit(CartItemtAdded());
+    emit(CartProductAdded());
   }
 }

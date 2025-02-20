@@ -1,10 +1,10 @@
 part of 'cart_cubit.dart';
 
 @immutable
-sealed class Carttate {}
+sealed class CartState {}
 
-final class CartCubitInitial extends Carttate {}
+final class CartCubitInitial extends CartState {}
 
-final class CartItemtAdded extends Carttate {}
+final class CartProductAdded extends CartState {}
 
-final class CartItemtRemove extends Carttate {}
+final class CartProductRemove extends CartState {}

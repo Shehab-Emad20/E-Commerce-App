@@ -52,7 +52,9 @@ class CartItem extends StatelessWidget {
                         .copyWith(color: AppColors.secondaryColor)),
                 Row(
                   children: [
-                    CartItemActionButtons(),
+                    CartItemActionButtons(
+                      cartItemEntity: cartItemEntity,
+                    ),
                     Spacer(),
                     Text('${cartItemEntity.calculateTotalPrice()} جنية',
                         style: TextStyles.bold16

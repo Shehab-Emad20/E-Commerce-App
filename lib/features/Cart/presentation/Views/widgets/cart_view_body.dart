@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants.dart';
+import 'package:flutter_application_1/core/cubits/products_cubits/products_cubits.dart';
 import 'package:flutter_application_1/core/helper_function/build_appbar.dart';
 import 'package:flutter_application_1/core/utils/widgets/custom_button.dart';
 import 'package:flutter_application_1/features/Cart/presentation/Views/widgets/cart_header.dart';
 import 'package:flutter_application_1/features/Cart/presentation/Views/widgets/cart_item_list.dart';
 import 'package:flutter_application_1/features/Cart/presentation/Views/widgets/custom_divider.dart';
+import 'package:flutter_application_1/features/Cart/presentation/cubit/cart_ubit/cart_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartViewBody extends StatelessWidget {
   const CartViewBody({super.key});
@@ -26,9 +29,15 @@ class CartViewBody extends StatelessWidget {
               ],
             ),
           ),
-          SliverToBoxAdapter(child: CustomDivider()),
+          SliverToBoxAdapter(
+              child: context.read<CartCubit>().cartEntity.cartItems.isEmpty
+                  ? SizedBox()
+                  : CustomDivider()),
           CartItemList(cartItems: []),
-          SliverToBoxAdapter(child: CustomDivider()),
+          SliverToBoxAdapter(
+              child: context.read<CartCubit>().cartEntity.cartItems.isEmpty
+                  ? SizedBox()
+                  : CustomDivider()),
         ]),
         Positioned(
           left: 16,

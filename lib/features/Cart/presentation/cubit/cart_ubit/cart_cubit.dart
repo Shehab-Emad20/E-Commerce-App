@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_application_1/core/entity/add_product_entity.dart';
 import 'package:flutter_application_1/features/Cart/domain/entites/cart_entity.dart';
+import 'package:flutter_application_1/features/Cart/domain/entites/cart_item_entity.dart';
 
 import 'package:meta/meta.dart';
 
@@ -20,6 +21,11 @@ class CartCubit extends Cubit<CartState> {
       cartEntity.addCartItem(carItem);
     }
 
-    emit(CartProductAdded());
+    emit(CartItemAdded());
+  }
+
+  void deleteCartItem(CartItemEntity cartItemEntity) {
+    cartEntity.removeCartItem(cartItemEntity);
+    emit(CartItemRemove());
   }
 }

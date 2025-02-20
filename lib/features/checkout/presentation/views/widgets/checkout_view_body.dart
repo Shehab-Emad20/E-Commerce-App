@@ -9,7 +9,7 @@ class CheckoutViewBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
-        children: [CheckoutSteps()],
+        children: [SizedBox(height: 16), CheckoutSteps()],
       ),
     );
   }

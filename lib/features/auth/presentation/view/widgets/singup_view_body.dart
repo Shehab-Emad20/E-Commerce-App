@@ -71,7 +71,7 @@ class _SingnupViewBodyState extends State<SingnupViewBody> {
                             userName,
                           );
                     } else {
-                      buidErrorBar(context, 'يجب الموافقة على الشروط والاحكام');
+                      showErrorBar(context, 'يجب الموافقة على الشروط والاحكام');
                     }
                   } else {
                     setState(() {

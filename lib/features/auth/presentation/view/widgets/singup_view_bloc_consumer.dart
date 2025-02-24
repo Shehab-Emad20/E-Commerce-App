@@ -18,7 +18,7 @@ class SingupViewBlocConsumer extends StatelessWidget {
           Navigator.pop(context);
         }
         if (state is SignupFailure) {
-          buidErrorBar(context, state.message);
+          showErrorBar(context, state.message);
         }
       },
       builder: (context, state) {

@@ -38,7 +38,9 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
       child: Column(
         children: [
           SizedBox(height: 20),
-          CheckoutSteps(currentPageIndex: currentPageIndex),
+          CheckoutSteps(
+              pageController: pageController,
+              currentPageIndex: currentPageIndex),
           Expanded(
             child: CheckoutStepsPageView(pageController: pageController),
           ),
@@ -64,7 +66,6 @@ String getNextButtonText(int currentPageIndex) {
       return 'التالي';
     case 2:
       return 'ادفع عبر paypal;';
-
     default:
       return 'التالي';
   }

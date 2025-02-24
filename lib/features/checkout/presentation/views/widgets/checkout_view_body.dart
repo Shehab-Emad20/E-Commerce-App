@@ -45,12 +45,13 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
             child: CheckoutStepsPageView(pageController: pageController),
           ),
           CustomButton(
-              onPressed: () {
-                pageController.animateToPage(currentPageIndex + 1,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.bounceIn);
-              },
-              text: getNextButtonText(currentPageIndex)),
+            onPressed: () {
+              pageController.animateToPage(currentPageIndex + 1,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.bounceIn);
+            },
+            text: getNextButtonText(currentPageIndex),
+          ),
           SizedBox(height: 32),
         ],
       ),

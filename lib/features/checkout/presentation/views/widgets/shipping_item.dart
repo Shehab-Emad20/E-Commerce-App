@@ -10,20 +10,22 @@ class ShippingItem extends StatelessWidget {
       required this.title,
       required this.subTitle,
       required this.price,
-      required this.isSelected});
+      required this.isSelected,
+      required this.onTap});
 
   final String title, subTitle, price;
   final bool isSelected;
-
+  final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 300),
-      child: Container(
-        padding: EdgeInsets.only(
-          left: 16,
-          right: 163,
-          top: 28,
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        padding: const EdgeInsets.only(
+          top: 16,
+          left: 13,
+          right: 28,
           bottom: 16,
         ),
         clipBehavior: Clip.antiAlias,

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/helper_function/build_appbar.dart';
-import 'package:flutter_application_1/features/Cart/domain/entites/cart_item_entity.dart';
+import 'package:flutter_application_1/features/Cart/domain/entites/cart_entity.dart';
+
+import 'package:flutter_application_1/features/checkout/domain/entites/order_entity.dart';
 import 'package:flutter_application_1/features/checkout/presentation/views/widgets/checkout_view_body.dart';
+import 'package:provider/provider.dart';
 
 class CheckoutView extends StatelessWidget {
-  const CheckoutView({super.key, required this.cartItems});
+  const CheckoutView({super.key, required this.cartEntity});
 
   static const routeName = 'checkout';
-  final List<CartItemEntity> cartItems;
+  final CartEntity cartEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,10 @@ class CheckoutView extends StatelessWidget {
         title: 'الشحن',
         shownotification: false,
       ),
-      body: CheckoutViewBody(),
+      body: Provider.value(
+        value: OrderEntity(cartEntity),
+        child: CheckoutViewBody(),
+      ),
     );
   }
 }

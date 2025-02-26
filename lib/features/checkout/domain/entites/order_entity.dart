@@ -4,7 +4,7 @@ import 'package:flutter_application_1/features/checkout/domain/entites/shipping_
 
 class OrderEntity {
   final CartEntity cartEntity;
-  final bool? payWithCash;
+  bool? payWithCash;
   final ShippingAdressEntity? shippingAdressEntity;
   OrderEntity(this.cartEntity, {this.payWithCash, this.shippingAdressEntity});
 }

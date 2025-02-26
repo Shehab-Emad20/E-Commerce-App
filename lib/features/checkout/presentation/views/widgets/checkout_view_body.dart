@@ -15,7 +15,8 @@ class CheckoutViewBody extends StatefulWidget {
 
 class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   late PageController pageController;
-
+  ValueNotifier<AutovalidateMode> valueNotifier =
+      ValueNotifier(AutovalidateMode.disabled);
   @override
   void initState() {
     pageController = PageController();
@@ -30,6 +31,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   @override
   void dispose() {
     pageController.dispose();
+    valueNotifier.dispose();
     super.dispose();
   }
 
@@ -47,18 +49,17 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
               currentPageIndex: currentPageIndex),
           Expanded(
             child: CheckoutStepsPageView(
+              valueListenable: valueNotifier,
               pageController: pageController,
               formKey: _formKey,
             ),
           ),
           CustomButton(
             onPressed: () {
-              if (context.read<OrderEntity>().payWithCash != null) {
-                pageController.animateToPage(currentPageIndex + 1,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.bounceIn);
-              } else {
-                showErrorBar(context, 'اختر طريقة الدفع');
+              if (currentPageIndex == 0) {
+                _handelShippingSectionVallidation(context);
+              } else if (currentPageIndex == 1) {
+                _handelAddressVallidation();
               }
             },
             text: getNextButtonText(currentPageIndex),
@@ -67,6 +68,25 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         ],
       ),
     );
+  }
+
+  void _handelShippingSectionVallidation(BuildContext context) {
+    if (context.read<OrderEntity>().payWithCash != null) {
+      pageController.animateToPage(currentPageIndex + 1,
+          duration: const Duration(milliseconds: 300), curve: Curves.bounceIn);
+    } else {
+      showErrorBar(context, 'اختر طريقة الدفع');
+    }
+  }
+
+  void _handelAddressVallidation() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      pageController.animateToPage(currentPageIndex + 1,
+          duration: const Duration(milliseconds: 300), curve: Curves.bounceIn);
+    } else {
+      valueNotifier.value = AutovalidateMode.always;
+    }
   }
 }
 

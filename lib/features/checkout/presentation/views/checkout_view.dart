@@ -25,6 +25,7 @@ class CheckoutView extends StatelessWidget {
         value: OrderEntity(
           cartEntity,
           shippingAdressEntity: ShippingAdressEntity(),
+          place: 'checked out view',
         ),
         child: CheckoutViewBody(),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/helper_function/build_appbar.dart';
+import 'package:flutter_application_1/core/helper_function/get_user.dart';
 import 'package:flutter_application_1/features/Cart/domain/entites/cart_entity.dart';
 
 import 'package:flutter_application_1/features/checkout/domain/entites/order_entity.dart';
@@ -23,6 +24,7 @@ class CheckoutView extends StatelessWidget {
       ),
       body: Provider.value(
         value: OrderEntity(
+          uID: getUser().uId,
           cartEntity,
           shippingAdressEntity: ShippingAdressEntity(),
           place: 'checked out view',

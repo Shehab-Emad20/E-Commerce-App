@@ -5,6 +5,6 @@ import 'package:flutter_application_1/features/checkout/domain/entites/shipping_
 class OrderEntity {
   final CartEntity cartEntity;
   bool? payWithCash;
-  final ShippingAdressEntity? shippingAdressEntity;
+   ShippingAdressEntity? shippingAdressEntity=ShippingAdressEntity();
   OrderEntity(this.cartEntity, {this.payWithCash, this.shippingAdressEntity});
 }

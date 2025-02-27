@@ -8,6 +8,7 @@ import 'package:flutter_application_1/features/Cart/domain/entites/cart_entity.d
 import 'package:flutter_application_1/features/checkout/domain/entites/order_entity.dart';
 import 'package:flutter_application_1/features/checkout/domain/entites/shipping_adress_entity.dart';
 import 'package:flutter_application_1/features/checkout/presentation/manger/add_order_cubit/add_order_cubit.dart';
+import 'package:flutter_application_1/features/checkout/presentation/views/widgets/add_order_cubit_bloc_builder.dart';
 import 'package:flutter_application_1/features/checkout/presentation/views/widgets/checkout_view_body.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocProvider;
 import 'package:provider/provider.dart';
@@ -37,7 +38,9 @@ class CheckoutView extends StatelessWidget {
             shippingAdressEntity: ShippingAdressEntity(),
             place: 'checked out view',
           ),
-          child: CheckoutViewBody(),
+          child: AddOrderCubitBlocBuilder(
+            child: CheckoutViewBody(),
+          ),
         ),
       ),
     );

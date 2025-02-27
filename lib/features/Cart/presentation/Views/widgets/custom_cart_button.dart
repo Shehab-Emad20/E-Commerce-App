@@ -22,7 +22,7 @@ class CustomCartButton extends StatelessWidget {
               arguments:
               context.read<CartCubit>().cartEntity;
             } else {
-              showErrorBar(context, 'السلة فارغة');
+              showBar(context, 'السلة فارغة');
             }
           },
           text:

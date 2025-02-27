@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/helper_function/build_appbar.dart';
 import 'package:flutter_application_1/core/helper_function/get_user.dart';
+import 'package:flutter_application_1/core/repos/orders_repo/orders_repo.dart';
+import 'package:flutter_application_1/core/services/git_it_service.dart';
 import 'package:flutter_application_1/features/Cart/domain/entites/cart_entity.dart';
 
 import 'package:flutter_application_1/features/checkout/domain/entites/order_entity.dart';
 import 'package:flutter_application_1/features/checkout/domain/entites/shipping_adress_entity.dart';
+import 'package:flutter_application_1/features/checkout/presentation/manger/add_order_cubit/add_order_cubit.dart';
 import 'package:flutter_application_1/features/checkout/presentation/views/widgets/checkout_view_body.dart';
+import 'package:flutter_bloc/flutter_bloc.dart' show BlocProvider;
 import 'package:provider/provider.dart';
 
 class CheckoutView extends StatelessWidget {
@@ -16,20 +20,25 @@ class CheckoutView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(
-        context,
-        title: 'الشحن',
-        shownotification: false,
+    return BlocProvider(
+      create: (context) => AddOrderCubit(
+        getIt.get<OrdersRepo>(),
       ),
-      body: Provider.value(
-        value: OrderEntity(
-          uID: getUser().uId,
-          cartEntity,
-          shippingAdressEntity: ShippingAdressEntity(),
-          place: 'checked out view',
+      child: Scaffold(
+        appBar: buildAppBar(
+          context,
+          title: 'الشحن',
+          shownotification: false,
         ),
-        child: CheckoutViewBody(),
+        body: Provider.value(
+          value: OrderEntity(
+            uID: getUser().uId,
+            cartEntity,
+            shippingAdressEntity: ShippingAdressEntity(),
+            place: 'checked out view',
+          ),
+          child: CheckoutViewBody(),
+        ),
       ),
     );
   }

@@ -16,7 +16,7 @@ class CartCubit extends Cubit<CartState> {
     var carItem = cartEntity.getCartItem(productEntity);
 
     if (isProductExist) {
-      carItem.increasCount();
+      carItem.increasQuantity();
     } else {
       cartEntity.addCartItem(carItem);
     }

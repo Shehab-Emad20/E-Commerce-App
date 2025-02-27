@@ -3,24 +3,24 @@ import 'package:flutter_application_1/core/entity/add_product_entity.dart';
 
 class CartItemEntity extends Equatable {
   final ProductEntity productEntity;
-  int count;
+  int quantity;
 
-  CartItemEntity({required this.productEntity, this.count = 0});
+  CartItemEntity({required this.productEntity, this.quantity = 0});
 
   num calculateTotalPrice() {
-    return productEntity.price * count;
+    return productEntity.price * quantity;
   }
 
   num calculateTotalWeight() {
-    return productEntity.unitAmount * count;
+    return productEntity.unitAmount * quantity;
   }
 
-  increasCount() {
-    count++;
+  increasQuantity() {
+    quantity++;
   }
 
-  decreasCount() {
-    count--;
+  decreasQuantity() {
+    quantity--;
   }
 
   @override

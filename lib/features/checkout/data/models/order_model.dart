@@ -31,6 +31,7 @@ class OrderModel {
         'totalPrice': totalPrice,
         'uId': uId,
         'status': 'pending',
+        'date': DateTime.now().toString(),
         'shippingAdressModel': shippingAdressModel,
         'orderProducts': orderProducts,
         'paymentMethod': paymentMethod

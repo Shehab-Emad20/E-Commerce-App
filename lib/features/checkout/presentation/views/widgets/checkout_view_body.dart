@@ -50,6 +50,24 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         children: [
           SizedBox(height: 20),
           CheckoutSteps(
+              onTap: (index) {
+                if (currentPageIndex == 0) {
+                  pageController.animateToPage(index,
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.easeIn);
+                } else if (index == 1) {
+                  var orderEntity = context.read<OrderEntity>();
+                  if (orderEntity.payWithCash != null) {
+                    pageController.animateToPage(index,
+                        duration: Duration(milliseconds: 300),
+                        curve: Curves.easeIn);
+                  } else {
+                    showBar(context, 'اختر طريقة الدفع');
+                  }
+                } else {
+                  _handelAddressVallidation();
+                }
+              },
               pageController: pageController,
               currentPageIndex: currentPageIndex),
           Expanded(

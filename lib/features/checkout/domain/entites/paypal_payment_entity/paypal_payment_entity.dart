@@ -1,4 +1,6 @@
 
+import 'package:flutter_application_1/features/checkout/domain/entites/order_entity.dart';
+
 import 'amount.dart';
 import 'item_list.dart';
 
@@ -9,7 +11,7 @@ class PaypalPaymentEntity {
 
   PaypalPaymentEntity({this.amount, this.description, this.itemList});
 
-  factory PaypalPaymentEntity.fromEntity(OrderInputEntity entity) {
+  factory PaypalPaymentEntity.fromEntity(OrderEntity entity) {
     return PaypalPaymentEntity(
       amount: Amount.fromEntity(entity),
       description: 'Payment description',

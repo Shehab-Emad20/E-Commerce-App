@@ -30,6 +30,7 @@ class OrderModel {
   toJson() => {
         'totalPrice': totalPrice,
         'uId': uId,
+        'status': 'pending',
         'shippingAdressModel': shippingAdressModel,
         'orderProducts': orderProducts,
         'paymentMethod': paymentMethod

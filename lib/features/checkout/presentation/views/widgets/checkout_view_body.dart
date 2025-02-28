@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/helper_function/build_error_bar.dart';
 import 'package:flutter_application_1/core/utils/app_keys.dart';
@@ -101,6 +100,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     var orderEntity = context.read<OrderEntity>();
     PaypalPaymentEntity paypalPaymentEntity =
         PaypalPaymentEntity.fromEntity(orderEntity);
+    var addOrderCubit = context.read<AddOrderCubit>();
     Navigator.of(context).push(MaterialPageRoute(
       builder: (BuildContext context) => PaypalCheckoutView(
         sandboxMode: true,
@@ -112,7 +112,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         note: "Contact us for any questions on your order.",
         onSuccess: (Map params) async {
           Navigator.pop(context);
-          showBar(context, 'تم الدفع بنجاح');
+          addOrderCubit.addOrder(order: orderEntity);
         },
         onError: (error) {
           Navigator.pop(context);

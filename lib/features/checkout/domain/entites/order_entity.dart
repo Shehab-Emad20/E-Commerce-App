@@ -37,5 +37,8 @@ class OrderEntity {
         calcualteShippingDiscount();
   }
 
-  
+  @override
+  String toString() {
+    return 'OrderEntity{uID: $uID, cartEntity: $cartEntity, payWithCash: $payWithCash, shippingAdressEntity: $shippingAdressEntity}';
+  }
 }

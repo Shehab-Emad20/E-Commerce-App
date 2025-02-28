@@ -13,11 +13,28 @@ import 'package:flutter_application_1/features/checkout/presentation/views/widge
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocProvider;
 import 'package:provider/provider.dart';
 
-class CheckoutView extends StatelessWidget {
+class CheckoutView extends StatefulWidget {
   const CheckoutView({super.key, required this.cartEntity});
 
   static const routeName = 'checkout';
   final CartEntity cartEntity;
+
+  @override
+  State<CheckoutView> createState() => _CheckoutViewState();
+}
+
+class _CheckoutViewState extends State<CheckoutView> {
+  late OrderEntity orderEntity;
+  @override
+  void initState() {
+    super.initState();
+    orderEntity = OrderEntity(
+      uID: getUser().uId,
+      widget.cartEntity,
+      shippingAdressEntity: ShippingAdressEntity(),
+      place: 'checked out view',
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +49,7 @@ class CheckoutView extends StatelessWidget {
           shownotification: false,
         ),
         body: Provider.value(
-          value: OrderEntity(
-            uID: getUser().uId,
-            cartEntity,
-            shippingAdressEntity: ShippingAdressEntity(),
-            place: 'checked out view',
-          ),
+          value: orderEntity,
           child: AddOrderCubitBlocBuilder(
             child: CheckoutViewBody(),
           ),

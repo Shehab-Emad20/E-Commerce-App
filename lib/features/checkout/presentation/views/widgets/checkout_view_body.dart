@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/helper_function/build_error_bar.dart';
 import 'package:flutter_application_1/core/utils/app_keys.dart';
@@ -109,11 +111,13 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         ],
         note: "Contact us for any questions on your order.",
         onSuccess: (Map params) async {
-          print("onSuccess: $params");
+          Navigator.pop(context);
+          showBar(context, 'تم الدفع بنجاح');
         },
         onError: (error) {
-          print("onError: $error");
           Navigator.pop(context);
+          log(error.toString());
+          showBar(context, 'حدث خطأ في عملية الدفع');
         },
         onCancel: () {
           print('cancelled:');
